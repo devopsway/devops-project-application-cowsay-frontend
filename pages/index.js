@@ -4,9 +4,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 export default function Home() {
-  const [msg, setMsg] = React.useState("test");
+  const [msg, setMsg] = React.useState("I'm a moooodule");
   let myCow = (message) => {
-    return <pre>{cowsay.say({ text: message })}</pre>;
+    return (
+      <pre>
+        {cowsay.say({
+          text: message,
+        })}
+      </pre>
+    );
   };
   let api_url = process.env.NEXT_PUBLIC_API_URL;
   async function handleClick() {
@@ -81,15 +87,15 @@ export default function Home() {
 
 function breakLine(string = "") {
   let countSpace = 1;
-  let arr =  string.split(' ')
-  let result = ""
-  arr.forEach(element => {
-    countSpace ++
-    if(countSpace % 15 == 0) {
-      countSpace == 1
-      result += `\n${element}`
+  let arr = string.split(" ");
+  let result = "";
+  arr.forEach((element) => {
+    countSpace++;
+    if (countSpace % 15 == 0) {
+      countSpace == 1;
+      result += `\n${element}`;
     } else {
-      result += ` ${element}`
+      result += ` ${element}`;
     }
   });
   return result;
