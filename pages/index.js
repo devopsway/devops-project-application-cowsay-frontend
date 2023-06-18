@@ -8,16 +8,19 @@ export default function Home() {
   let myCow = (message) => {
     return <pre>{cowsay.say({ text: message })}</pre>;
   };
-  let api_url =  process.env.NEXT_PUBLIC_API_URL
+  let api_url = process.env.NEXT_PUBLIC_API_URL;
   async function handleClick() {
     fetch(`${api_url}/cow`)
       .then((res) => res.json())
-      .then((data) => setMsg(data.msg));
-      // .then((data) => setMsg('asdf \n sdfasd'));
+      .then((data) => {
+        console.log();
+        setMsg(breakLine(data.msg));
+      })
+      .catch((err) => {
+        console.log(err);
+        setMsg("Failed to call backend API");
+      });
   }
-
-  // console.log(output);
-  // console.log(cow.say());
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -74,4 +77,20 @@ export default function Home() {
       </div>
     </main>
   );
+}
+
+function breakLine(string = "") {
+  let countSpace = 1;
+  let arr =  string.split(' ')
+  let result = ""
+  arr.forEach(element => {
+    countSpace ++
+    if(countSpace % 15 == 0) {
+      countSpace == 1
+      result += `\n${element}`
+    } else {
+      result += ` ${element}`
+    }
+  });
+  return result;
 }
