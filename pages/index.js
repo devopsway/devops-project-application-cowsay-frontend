@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 export default function Home() {
-  const [msg, setMsg] = React.useState("I'm a DevOps");
+  const [msg, setMsg] = React.useState("I'm a Moooooo!");
   let myCow = (message) => {
     return (
       <pre>
