@@ -3,11 +3,13 @@ node {
     stage('Preparation') { // for display purposes
         println("Preparation")
         println("I'm sleeping")
-        sh "sleep 1000"
+        sh "ssh cicd@10.148.0.3 'git clone'"
+        
     }
     stage('Build') {
         println("Preparation")
         // sh "npm run test"
+        sh "ssh cicd@10.148.0.3 'npm install'"
     }
     stage('Results') {
         println("Preparation")
