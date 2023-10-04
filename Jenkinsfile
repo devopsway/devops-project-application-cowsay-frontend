@@ -13,7 +13,7 @@ node {
             sh "cat $ssh_key_file > key"
             sh "chmod 400 key"
             sh "ssh -o StrictHostKeyChecking=no -i key cicd@35.187.231.94 'cd devops-project-application-cowsay-frontend && npm install'"
-            sh "ssh -o StrictHostKeyChecking=no -i key cicd@35.187.231.94 'cd devops-project-application-cowsay-frontend && npm build'"
+            sh "ssh -o StrictHostKeyChecking=no -i key cicd@35.187.231.94 'cd devops-project-application-cowsay-frontend && npm run build'"
         }
     }
     stage('Run application') {
