@@ -1,21 +1,21 @@
 node {
     def mvnHome
-    stage('Preparation') { // for display purposes
-        println("Preparation")
-        println("I'm sleeping")
-        sh "ssh cicd@10.148.0.3 'git clone'"
-        
+    stage('Clone source code') { // for display purposes
+        withCredentials([file(credentialsId: 'ssh-key', variable: 'ssh_key_file')]) {
+            sh "ssh -o StrictHostKeyChecking=no -i key cicd@35.187.231.94 'git clone https://github.com/devopsway/devops-project-application-cowsay-frontend.git'"
+        }
     }
     stage('Build') {
-        println("Preparation")
-        // sh "npm run test"
-        sh "ssh cicd@10.148.0.3 'npm install'"
+        withCredentials([file(credentialsId: 'ssh-key', variable: 'ssh_key_file')]) {
+            sh "ssh -o StrictHostKeyChecking=no -i key cicd@35.187.231.94 'cd devops-project-application-cowsay-frontend && npm install'"
+        }
     }
     stage('Results') {
         println("Preparation")
         aloha()
     }
 }
+
 def aloha() {
     println("This is aloha method")
 }
